@@ -1,6 +1,10 @@
 # Projet-Fourmi
+---
 
-NAHAS Sam /p
-SOULEYMANE Haoia
-SIVANESAN Aginthan
-TD3
+#  Groupe (TD3)
+* NAHAS Sam
+* SOULEYMANE Haoia
+* SIVANESAN Aginthan
+
+# URL de dépôt
+* 
