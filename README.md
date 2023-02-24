@@ -1,7 +1,7 @@
 # Projet-Fourmi
 ---
 
-#  Groupe (TD3)
+#  Groupe BI-TD3
 * NAHAS Sam
 * SOULEYMANE Haoia
 * SIVANESAN Aginthan
