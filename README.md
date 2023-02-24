@@ -2,7 +2,7 @@
 ---
 
 #  Groupe BI-TD3
-* NAHAS Sam
+* NAHAS Samer
 * SOULEYMANE Haoua
 * SIVANESAN Aginthan
 
