@@ -83,3 +83,43 @@ def anim() :
     id_anim = cnv.after(DELAY, anim)
 
 # FIN PARTIE 2
+root= Tk()
+cnv= Canvas(root, width=WIDTH, height= HEIGHT, background=COLOR_OFF)
+cnv.pack(side=LEFT)
+
+nwidth= WIDTH // UNIT
+nheight= HEIGHT // UNIT
+
+def make_grid():
+    for i in range(nwidth):
+        cnv.create_line(( i * UNIT, 0),
+    for i in range(nheight):
+        cnv.create_line((0, i * UNIT),
+
+
+def init():
+    global items, pos, drn, arr, stop
+    cnv.delete("all")
+    cnv.focus_set()
+    make_grid()
+                        
+items = [[0] * nwidth for _ in range(nheight)]
+pos = (nheight // 2, nwidth // 2)
+drn = (1,0)
+arr = draw_arrow(post[0], pos[1], drn)
+stop = True
+anim()
+                        
+def on_off(event):
+    global stop
+    stop = not stop
+                        
+def again(event):
+    cnv.after_cancel(id_anim)
+    init()
+                        
+cnv.bind("<space>", on_off)
+cnv.bind("<Escape>", again)
+                        
+init()
+root.mainloop()                        
