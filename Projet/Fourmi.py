@@ -1,7 +1,7 @@
-#Projet de Fourmi de Langton
+# Projet de Fourmi de Langton
 # Source : (http://pascal.ortiz.free.fr/contents/tkinter/projets_tkinter/langton/langton.html)
 # La fourmi de Langton - Documentation
-#Partie 1
+# Partie 1
 
 from tkinter import *
 
