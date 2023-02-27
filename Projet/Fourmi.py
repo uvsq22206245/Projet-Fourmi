@@ -1,6 +1,6 @@
 #Projet de Fourmi de Langton
 # PARTIE 2
-# Source : La fourmi de Langton - Documentaion
+# Source : La fourmi de Langton - Documentation
 
 def draw_square(i, j) :
     x, y = j * UnicodeTranslateError, i * UnicodeTranslateError
