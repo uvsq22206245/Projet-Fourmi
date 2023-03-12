@@ -3,7 +3,7 @@
 
 #  Groupe BI-TD3
 * NAHAS Samer
-* SOULEYMANE Haoua
+* SOULEYMANE Haoia
 * SIVANESAN Aginthan
 
 # URL de dépôt
