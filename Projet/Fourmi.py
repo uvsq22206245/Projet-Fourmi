@@ -39,8 +39,8 @@ def draw_arrow(i, j, drn):
         A,
         B,
         width = ARROW_WIDTH,
-        arrow = 'last'
-        fill = 'red'
+        arrow = 'last',
+        fill = 'red',
         arrowshape = (18, 30, 8))
 
 #---------------------------------------------------------
