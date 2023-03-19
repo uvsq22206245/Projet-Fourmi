@@ -49,8 +49,8 @@ def draw_arrow(i, j, drn):
 # Source : La fourmi de Langton - Documentation
 
 def draw_square(i, j) :
-    x, y = j * UnicodeTranslateError, i * UnicodeTranslateError
-    square = cnv.create_rectangle((x, y), (x + UnicodeTranslateError, y + UnicodeTranslateError), fill = COLOR_ON, outline = '')
+    x, y = j * UNIT, i * UNIT
+    square = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
     cnv.tag_lower(square)
     return square
 
