@@ -5,18 +5,18 @@
 
 from tkinter import *
 
-SIDE = 600
-WIDTH = SIDE
-HEIGHT = SIDE
-UNIT = SIDE // 7
-ARROW_WIDTH = UNIT // 8
+DIMENSION = 700
+LARGEUR = DIMENSION
+HAUTEUR = DIMENSION
+UNIT = DIMENSION // 7
+LARGEUR_FLECHE = UNIT // 8
 DELAY = 500
 
 COLOR_GRID = "black"
 COLOR_ON = 'gray30'
-COLOR_OFF = 'LightSteelBlue1'
+COLOR_OFF = 'White'
 
-def draw_arrow(i, j, drn):
+def draw_fleche(i, j, drn):
     sep = UNIT // 8
     east = (sep, UNIT // 2)
     west = (UNIT - sep, UNIT // 2)
@@ -38,37 +38,37 @@ def draw_arrow(i, j, drn):
     return cnv.create_line(
         A,
         B,
-        width = ARROW_WIDTH,
-        arrow = 'last',
+        LARGEUR = LARGEUR_FLECHE,
+        FLECHE = 'last',
         fill = 'red',
-        arrowshape = (18, 30, 8))
+        FORME_FLECHE = (18, 30, 8))
 
 #---------------------------------------------------------
 
 # PARTIE 2
 # Source : La fourmi de Langton - Documentation
 
-def draw_square(i, j) :
+def draw_carre(i, j) :
     x, y = j * UNIT, i * UNIT
-    square = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
-    cnv.tag_lower(square)
-    return square
+    CARRE = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
+    cnv.tag_lower(CARRE)
+    return CARRE
 
-def draw(pos, drn, arrow) :
-    cnv.delete(arrow)
+def draw(pos, drn, FLECHE) :
+    cnv.delete(FLECHE)
     (ii, jj), ndrn = bouger(pos, drn, items)
     i, j = pos
-    square = items[i][j]
+    CARRE = items[i][j]
 
-    if square == 0 :
-        square = draw_square(i, j)
-        items[i][j] = square
+    if CARRE == 0 :
+        CARRE = draw_carre(i, j)
+        items[i][j] = CARRE
     else :
-        cnv.delete(square)
+        cnv.delete(CARRE)
         items[i][j] = 0
     
-    narrow = draw_arrow(ii, jj, ndrn)
-    return(ii, jj), ndrn, narrow
+    new_arrow = draw_fleche(ii, jj, ndrn)
+    return(ii, jj), ndrn, new_arrow
 
 def bouger(pos, drn, items) :
     i, j = pos
@@ -84,16 +84,16 @@ def anim() :
 
 # FIN PARTIE 2
 root= Tk()
-cnv= Canvas(root, width=WIDTH, height= HEIGHT, background=COLOR_OFF)
-cnv.pack(side=LEFT)
+cnv= Canvas(root, LARGEUR=WIDTH, HAUTEUR= HEIGHT, background=COLOR_OFF)
+cnv.pack(side=CENTER)
 
-nwidth= WIDTH // UNIT
-nheight= HEIGHT // UNIT
+new_largeur= LARGEUR // UNIT
+new_hauteur= HAUTEUR // UNIT
 
 def make_grid():
-    for i in range(nwidth):
+    for i in range(new_largeur):
         cnv.create_line(( i * UNIT, 0),
-    for i in range(nheight):
+    for i in range(new_hauteur):
         cnv.create_line((0, i * UNIT),
 
 
@@ -103,10 +103,10 @@ def init():
     cnv.focus_set()
     make_grid()
                         
-items = [[0] * nwidth for _ in range(nheight)]
-pos = (nheight // 2, nwidth // 2)
+items = [[0] * new_largeur for _ in range(new_hauteur)]
+pos = (new_hauteur // 2, new_largeur // 2)
 drn = (1,0)
-arr = draw_arrow(post[0], pos[1], drn)
+arr = draw_fleche(pos[0], pos[1], drn)
 stop = True
 anim()
                         
