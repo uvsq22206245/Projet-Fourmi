@@ -50,7 +50,7 @@ def draw_fleche(i, j, drn):
 
 def draw_carre(i, j) :
     x, y = j * UNIT, i * UNIT
-    CARRE = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
+    CARRE = cnv.create_square((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
     cnv.tag_lower(CARRE)
     return CARRE
 
