@@ -102,13 +102,12 @@ def init():
     cnv.delete("all")
     cnv.focus_set()
     make_grid()
-                        
-items = [[0] * new_largeur for _ in range(new_hauteur)]
-pos = (new_hauteur // 2, new_largeur // 2)
-drn = (1,0)
-arr = draw_fleche(pos[0], pos[1], drn)
-stop = True
-anim()
+    items = [[0] * new_largeur for _ in range(new_hauteur)]
+    pos = (new_hauteur // 2, new_largeur // 2)
+    drn = (1,0)
+    arr = draw_fleche(pos[0], pos[1], drn)
+    stop = True
+    anim()
                         
 def on_off(event):
     global stop
