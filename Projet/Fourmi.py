@@ -52,12 +52,24 @@ def draw_fleche(i, j, drn):
 # Source : La fourmi de Langton - Documentation
 
 def draw_carre(i, j) :
+    """
+    Cette fonction permet dessiner un carré grâce au canva est aux  
+    """
     x, y = j * UNIT, i * UNIT
     CARRE = cnv.create_square((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
     cnv.tag_lower(CARRE)
     return CARRE
 
+
 def draw(pos, drn, FLECHE) :
+"""
+Cette fonction permet de dessiner et effacer la flêche selon sa position et sa future position
+ndrn = nouvellle direction
+drn = direction
+pos = position
+new_arrow = nouvelle flêche
+
+"""
     cnv.delete(FLECHE)
     (ii, jj), ndrn = bouger(pos, drn, items)
     i, j = pos
@@ -112,11 +124,19 @@ def init():                      #initialiser, creer le tableau
     stop = True # pour qu on commence pas l'animation
     anim()
                         
-def on_off(event):        #evenement on off pour pauser ou continuer le jeu
+                        
+#evenement on off pour pauser ou continuer le jeu                       
+def on_off(event):  
+"""
+Cette fonction nous permet de contôler la flêche  de mettre en pause ou continuer la progression de la flêche
+"""                                      
     global stop
     stop = not stop
                         
 def again(event): # evenement pour repetter le jeu depuis le debut
+"""
+Cette fonction nous permet de recommencer la partie à zéro
+"""                                                              
     cnv.after_cancel(id_anim)
     init()
                         
