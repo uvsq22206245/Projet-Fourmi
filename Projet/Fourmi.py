@@ -83,37 +83,37 @@ def anim() :
     id_anim = cnv.after(DELAY, anim)
 
 # FIN PARTIE 2
-root= Tk()
-cnv= Canvas(root, LARGEUR=WIDTH, HAUTEUR= HEIGHT, background=COLOR_OFF)
-cnv.pack(side=CENTER)
+root= Tk()  #importation bibliotheque creer une nouvelle fenetre ou on peut mettre le jeu
+cnv= Canvas(root, LARGEUR=WIDTH, HAUTEUR= HEIGHT, background=COLOR_OFF) # cnv = esthetique
+cnv.pack(side=CENTER) #ca sert a faire un pack ou on va mettre de nouvelle donne
 
-new_largeur= LARGEUR // UNIT
-new_hauteur= HAUTEUR // UNIT
+new_largeur= LARGEUR // UNIT # diviser grille total paar les cases pour avoir la creation de petites cases
+new_hauteur= HAUTEUR // UNIT # same thing but for hauteur
 
-def make_grid():
+def make_grid():                #fct pour faire grille et ses dimensions
     for i in range(new_largeur):
         cnv.create_line(( i * UNIT, 0),
     for i in range(new_hauteur):
         cnv.create_line((0, i * UNIT),
 
 
-def init():
-    global items, pos, drn, arr, stop
+def init():                      #initialiser, creer le tableau
+    global items, pos, drn, arr, stop #la fonctio est la meme utise inside et outside la fonction
     cnv.delete("all")
-    cnv.focus_set()
+    cnv.focus_set() #ce concentrer sur mouvemen de la fleche
     make_grid()
-    items = [[0] * new_largeur for _ in range(new_hauteur)]
-    pos = (new_hauteur // 2, new_largeur // 2)
+    items = [[0] * new_largeur for _ in range(new_hauteur)]                                      #pour qu on cree le tbaleau vide avec la fourmi au milieu 
+    pos = (new_hauteur // 2, new_largeur // 2) # pour etre au centre du carre
     drn = (1,0)
     arr = draw_fleche(pos[0], pos[1], drn)
-    stop = True
+    stop = True # pour qu on commence pas l'animation
     anim()
                         
-def on_off(event):
+def on_off(event):        #evenement on off pour pauser ou continuer le jeu
     global stop
     stop = not stop
                         
-def again(event):
+def again(event): # evenement pour repetter le jeu depuis le debut
     cnv.after_cancel(id_anim)
     init()
                         
@@ -121,5 +121,5 @@ cnv.bind("<space>", on_off)
 cnv.bind("<Escape>", again)
                         
 init()
-root.mainloop() 
+root.mainloop() # to do a loop so the game wont stop unless we say so
                         
