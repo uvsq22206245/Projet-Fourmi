@@ -5,6 +5,7 @@
 
 from tkinter import *
 
+#Déclaration des variables
 DIMENSION = 700
 LARGEUR = DIMENSION
 HAUTEUR = DIMENSION
@@ -12,10 +13,12 @@ UNIT = DIMENSION // 7
 LARGEUR_FLECHE = UNIT // 8
 DELAY = 500
 
+#Déclaration dex variables pour les états de la grille
 COLOR_GRID = "black"
 COLOR_ON = 'gray30'
 COLOR_OFF = 'White'
 
+#Fonction permettant l'affichage de la flèche et le comportement de la fourmi (Fourmi)
 def draw_fleche(i, j, drn):
     sep = UNIT // 8
     east = (sep, UNIT // 2)
@@ -48,7 +51,6 @@ def draw_fleche(i, j, drn):
 # PARTIE 2
 # Source : La fourmi de Langton - Documentation
 
-#cette fonction permet de dessiner la carré
 def draw_carre(i, j) :
     x, y = j * UNIT, i * UNIT
     CARRE = cnv.create_square((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
