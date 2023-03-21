@@ -48,6 +48,7 @@ def draw_fleche(i, j, drn):
 # PARTIE 2
 # Source : La fourmi de Langton - Documentation
 
+#cette fonction permet de dessiner la carré
 def draw_carre(i, j) :
     x, y = j * UNIT, i * UNIT
     CARRE = cnv.create_square((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
