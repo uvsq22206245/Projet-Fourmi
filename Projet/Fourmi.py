@@ -147,6 +147,7 @@ def etape_par_etape(event) :
                         
 cnv.bind("<space>", on_off)
 cnv.bind("<Escape>", again)
+cnv.bind("<Right>", etape_par_etape)
                         
 init()
 root.mainloop() # to do a loop so the game wont stop unless we say so
