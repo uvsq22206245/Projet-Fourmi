@@ -139,6 +139,11 @@ Cette fonction nous permet de recommencer la partie à zéro
 """                                                              
     cnv.after_cancel(id_anim)
     init()
+
+def etape_par_etape(event) :
+    global position, direction, arr, id_anim, stop
+    if stop :
+       position, direction, arr = draw(position, direction, arr)
                         
 cnv.bind("<space>", on_off)
 cnv.bind("<Escape>", again)
