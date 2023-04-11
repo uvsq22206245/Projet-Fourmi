@@ -5,34 +5,31 @@
 
 from tkinter import *
 
-#Déclaration des variables
-DIMENSION = 700
-LARGEUR = DIMENSION
-HAUTEUR = DIMENSION
-UNIT = DIMENSION // 7
-LARGEUR_FLECHE = UNIT // 8
+SIDE = 600
+WIDTH = SIDE
+HEIGHT = SIDE
+UNIT = SIDE // 7
+ARROW_WIDTH = UNIT // 8
 DELAY = 500
 
-#Déclaration dex variables pour les états de la grille
-COLOR_GRID = "black"
-COLOR_ON = 'gray30'
-COLOR_OFF = 'White'
+COLOR_GRID = "gray30"
+COLOR_ON = 'black'
+COLOR_OFF = 'white'
 
-#Fonction permettant l'affichage de la flèche et le comportement de la fourmi (Fourmi)
-def draw_fleche(i, j, drn):
+def draw_arrow(i, j, direction):
     sep = UNIT // 8
     east = (sep, UNIT // 2)
     west = (UNIT - sep, UNIT // 2)
     north = (UNIT // 2, sep)
     south = (UNIT // 2, UNIT - sep)
     x, y = j * UNIT, i * UNIT
-    if drn == (0, 1):
+    if direction == (0, 1):
         A = (x + east[0], y + east[1])
         B = (x + west[0], y + west[1])
-    elif drn == (-1, 0):
+    elif direction ==  (-1, 0):
         A = (x + south[0], y + south[1])
         B = (x + north[0], y + north[1])
-    elif drn == (0, -1):
+    elif direction ==  (0, -1):
         B = (x + east[0], y + east[1])
         A = (x + west[0], y + west[1])
     else:
@@ -41,114 +38,98 @@ def draw_fleche(i, j, drn):
     return cnv.create_line(
         A,
         B,
-        LARGEUR = LARGEUR_FLECHE,
-        FLECHE = 'last',
-        fill = 'red',
-        FORME_FLECHE = (18, 30, 8))
+        width=ARROW_WIDTH,
+        arrow='last',
+        fill='red',
+        arrowshape=(18, 30, 8))
 
-#---------------------------------------------------------
 
-# PARTIE 2
-# Source : La fourmi de Langton - Documentation
-
-def draw_carre(i, j) :
-    """
-    Cette fonction permet dessiner un carré grâce au canva est aux  
-    """
+def draw_square(i, j):
     x, y = j * UNIT, i * UNIT
-    CARRE = cnv.create_square((x, y), (x + UNIT, y + UNIT), fill = COLOR_ON, outline = '')
-    cnv.tag_lower(CARRE)
-    return CARRE
+    square = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT),
+                                  fill=COLOR_ON,
+                                  outline='')
+    cnv.tag_lower(square)
+    return square
 
 
-def draw(pos, drn, FLECHE) :
-"""
-Cette fonction permet de dessiner et effacer la flêche selon sa position et sa future position
-ndrn = nouvellle direction
-drn = direction
-pos = position
-new_arrow = nouvelle flêche
+def draw(position, direction, arrow):
+    cnv.delete(arrow)
+    (ii, jj), newdirection = bouger(position, direction, items)
+    i, j = position
+    square = items[i][j]
 
-"""
-    cnv.delete(FLECHE)
-    (ii, jj), ndrn = bouger(pos, drn, items)
-    i, j = pos
-    CARRE = items[i][j]
-
-    if CARRE == 0 :
-        CARRE = draw_carre(i, j)
-        items[i][j] = CARRE
-    else :
-        cnv.delete(CARRE)
+    if square == 0:
+        square = draw_square(i, j)
+        items[i][j] = square
+    else:
+        cnv.delete(square)
         items[i][j] = 0
-    
-    new_arrow = draw_fleche(ii, jj, ndrn)
-    return(ii, jj), ndrn, new_arrow
 
-def bouger(pos, drn, items) :
-    i, j = pos
-    a, b = drn
+    newarrow = draw_arrow(ii, jj, newdirection)
+    return (ii, jj), newdirection, newarrow
+
+def bouger(position, direction, items):
+    i, j = position
+    a, b = direction
     aa, bb = (b, -a) if items[i][j] == 0 else (-b, a)
-    return(i + aa, j + bb), (aa, bb)
 
-def anim() :
-    global pos, drn, arr, id_anim, stop 
-    if not stop :
-        pos, drn, arr = draw(pos, drn,arr)
+    newi, newj = i + aa, j + bb
+
+    newi = newi % newheight
+    newj = newj % newwidth
+
+    return (newi, newj), (aa, bb)
+
+def anim():
+    global position, direction, arrow, id_anim, stop
+    if not stop:
+        position, direction, arrow = draw(position, direction, arrow)
     id_anim = cnv.after(DELAY, anim)
 
-# FIN PARTIE 2
-root= Tk()  #importation bibliotheque creer une nouvelle fenetre ou on peut mettre le jeu
-cnv= Canvas(root, LARGEUR=WIDTH, HAUTEUR= HEIGHT, background=COLOR_OFF) # cnv = esthetique
-cnv.pack(side=CENTER) #ca sert a faire un pack ou on va mettre de nouvelle donne
+root = Tk()
+cnv = Canvas(root, width=WIDTH, height=HEIGHT, background=COLOR_OFF)
+cnv.pack()
 
-new_largeur= LARGEUR // UNIT # diviser grille total paar les cases pour avoir la creation de petites cases
-new_hauteur= HAUTEUR // UNIT # same thing but for hauteur
+newwidth = WIDTH // UNIT
+newheight = HEIGHT // UNIT
 
-def make_grid():                #fct pour faire grille et ses dimensions
-    for i in range(new_largeur):
-        cnv.create_line(( i * UNIT, 0),
-    for i in range(new_hauteur):
-        cnv.create_line((0, i * UNIT),
+def make_grid():
+    for i in range(newwidth):
+        cnv.create_line((i * UNIT, 0), (i * UNIT, HEIGHT), fill=COLOR_GRID)
+    for i in range(newheight):
+        cnv.create_line((0, i * UNIT), (WIDTH, i * UNIT), fill=COLOR_GRID)
 
 
-def init():                      #initialiser, creer le tableau
-    global items, pos, drn, arr, stop #la fonctio est la meme utise inside et outside la fonction
+def init():
+    global items, position, direction, arrow, stop
     cnv.delete("all")
-    cnv.focus_set() #ce concentrer sur mouvemen de la fleche
+    cnv.focus_set()
     make_grid()
-    items = [[0] * new_largeur for _ in range(new_hauteur)]                                      #pour qu on cree le tbaleau vide avec la fourmi au milieu 
-    pos = (new_hauteur // 2, new_largeur // 2) # pour etre au centre du carre
-    drn = (1,0)
-    arr = draw_fleche(pos[0], pos[1], drn)
-    stop = True # pour qu on commence pas l'animation
+
+    items = [[0] * newwidth for _ in range(newheight)]
+    position = (newheight // 2, newwidth // 2)
+    direction = (0, 1)
+    arrow = draw_arrow(position[0], position[1], direction)
+    stop = True
     anim()
-                        
-                        
-#evenement on off pour pauser ou continuer le jeu                       
-def on_off(event):  
-"""
-Cette fonction nous permet de contôler la flêche  de mettre en pause ou continuer la progression de la flêche
-"""                                      
+
+def on_off(event):
     global stop
     stop = not stop
-                        
-def again(event): # evenement pour repetter le jeu depuis le debut
-"""
-Cette fonction nous permet de recommencer la partie à zéro
-"""                                                              
+
+def again(event):
     cnv.after_cancel(id_anim)
     init()
 
-def etape_par_etape(event) :
-    global position, direction, arr, id_anim, stop
-    if stop :
-       position, direction, arr = draw(position, direction, arr)
-                        
+def step_by_step(event):
+    global position, direction, arrow, id_anim, stop
+    if stop:
+        position, directionn, arrow = draw(pos, drn, arr)
+
 cnv.bind("<space>", on_off)
 cnv.bind("<Escape>", again)
-cnv.bind("<Right>", etape_par_etape)
-                        
+cnv.bind("<Right>", step_by_step)
+
 init()
-root.mainloop() # to do a loop so the game wont stop unless we say so
-                        
+root.mainloop()
