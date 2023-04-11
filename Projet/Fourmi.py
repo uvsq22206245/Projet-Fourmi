@@ -125,7 +125,7 @@ def again():
 def step_by_step():
     global position, direction, arrow, id_anim, stop
     if stop:
-        (position, directionn, arrow = draw(position, direction, arrow)
+        position, directionn, arrow = draw(position, direction, arrow)
          
          
 button1 = Button(root, text="On/Off", command=on_off)
