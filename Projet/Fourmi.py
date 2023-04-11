@@ -18,23 +18,23 @@ COLOR_OFF = 'white'
 
 def draw_arrow(i, j, direction):
     sep = UNIT // 8
-    east = (sep, UNIT // 2)
-    west = (UNIT - sep, UNIT // 2)
-    north = (UNIT // 2, sep)
-    south = (UNIT // 2, UNIT - sep)
+    est = (sep, UNIT // 2)
+    ouest = (UNIT - sep, UNIT // 2)
+    nord = (UNIT // 2, sep)
+    sud = (UNIT // 2, UNIT - sep)
     x, y = j * UNIT, i * UNIT
     if direction == (0, 1):
-        A = (x + east[0], y + east[1])
-        B = (x + west[0], y + west[1])
+        A = (x + est[0], y + est[1])
+        B = (x + ouest[0], y + ouest[1])
     elif direction ==  (-1, 0):
-        A = (x + south[0], y + south[1])
-        B = (x + north[0], y + north[1])
+        A = (x + sud[0], y + sud[1])
+        B = (x + nord[0], y + nord[1])
     elif direction ==  (0, -1):
-        B = (x + east[0], y + east[1])
-        A = (x + west[0], y + west[1])
+        B = (x + est[0], y + est[1])
+        A = (x + ouest[0], y + ouest[1])
     else:
-        B = (x + south[0], y + south[1])
-        A = (x + north[0], y + north[1])
+        B = (x + sud[0], y + sud[1])
+        A = (x + nord[0], y + nord[1])
     return cnv.create_line(
         A,
         B,
