@@ -114,22 +114,29 @@ def init():
     stop = True
     anim()
 
-def on_off(event):
+def on_off():
     global stop
     stop = not stop
 
-def again(event):
+def again():
     cnv.after_cancel(id_anim)
     init()
 
-def step_by_step(event):
+def step_by_step():
     global position, direction, arrow, id_anim, stop
     if stop:
-        position, directionn, arrow = draw(pos, drn, arr)
+        (position, directionn, arrow = draw(position, direction, arrow)
+         
+         
+button1 = Button(root, text="On/Off", command=on_off)
+button1.pack(side=LEFT, padx=5, pady=5)
 
-cnv.bind("<space>", on_off)
-cnv.bind("<Escape>", again)
-cnv.bind("<Right>", step_by_step)
+button2 = Button(root, text="Again", command=again)
+button2.pack(side=LEFT, padx=5, pady=5)
+
+button3 = Button(root, text="Step-by-Step", command=step_by_step)
+button3.pack(side=LEFT, padx=5, pady=5)
+
 
 init()
 root.mainloop()
