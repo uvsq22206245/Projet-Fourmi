@@ -6,7 +6,7 @@ from tkinter import *
 
 COTE = 600                          
 LARGEUR = COTE
-HEIGHT = COTE
+HAUTEUR = COTE
 UNITE = COTE // 7
 LARGEUR_FLECHE = UNITE // 8
 DELAI = 500
@@ -85,15 +85,15 @@ def animation():
     id_anim = cnv.after(DELAI, animation)
 
 root = Tk()                                             
-cnv = Canvas(root, width=LARGEUR, height=HEIGHT, background=COULEUR_2)
+cnv = Canvas(root, width=LARGEUR, height=HAUTEUR, background=COULEUR_2)
 cnv.pack()
 
 nouvelle_largeur = LARGEUR // UNITE                                                        
-nouvelle_hauteur = HEIGHT // UNITE
+nouvelle_hauteur = HAUTEUR // UNITE
 
 def faire_grille():                                                                
     for i in range(nouvelle_largeur):
-        cnv.create_line((i * UNITE, 0), (i * UNITE, HEIGHT), fill=COULEUR_GRILLE)
+        cnv.create_line((i * UNITE, 0), (i * UNITE, HAUTEUR), fill=COULEUR_GRILLE)
     for i in range(nouvelle_hauteur):
         cnv.create_line((0, i * UNITE), (LARGEUR, i * UNITE), fill=COULEUR_GRILLE)
 
