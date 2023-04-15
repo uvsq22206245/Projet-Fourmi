@@ -1,28 +1,27 @@
 # Projet de Fourmi de Langton
 # Source : (http://pascal.ortiz.free.fr/contents/tkinter/projets_tkinter/langton/langton.html)
 # La fourmi de Langton - Documentation
-# Partie 1
 
 from tkinter import *
 
-SIDE = 600
-WIDTH = SIDE
-HEIGHT = SIDE
-UNIT = SIDE // 7
-ARROW_WIDTH = UNIT // 8
-DELAY = 500
+COTE = 600                          
+LARGEUR = COTE
+HEIGHT = COTE
+UNITE = COTE // 7
+LARGEUR_FLECHE = UNITE // 8
+DELAI = 500
 
-COLOR_GRID = "gray30"
-COLOR_ON = 'black'
-COLOR_OFF = 'white'
+COULEUR_GRILLE = "gray30"
+COULEUR_1 = 'black'
+COULEUR_2 = 'white'
 
-def draw_arrow(i, j, direction):
-    sep = UNIT // 8
-    est = (sep, UNIT // 2)
-    ouest = (UNIT - sep, UNIT // 2)
-    nord = (UNIT // 2, sep)
-    sud = (UNIT // 2, UNIT - sep)
-    x, y = j * UNIT, i * UNIT
+def dessine_fourmi(i, j, direction):                
+    séparation = UNITE // 8
+    est = (séparation, UNITE // 2)
+    ouest = (UNITE - séparation, UNITE // 2)
+    nord = (UNITE // 2, séparation)
+    sud = (UNITE // 2, UNITE - séparation)
+    x, y = j * UNITE, i * UNITE
     if direction == (0, 1):
         A = (x + est[0], y + est[1])
         B = (x + ouest[0], y + ouest[1])
@@ -38,105 +37,142 @@ def draw_arrow(i, j, direction):
     return cnv.create_line(
         A,
         B,
-        width=ARROW_WIDTH,
+        width=LARGEUR_FLECHE,
         arrow='last',
         fill='red',
         arrowshape=(18, 30, 8))
 
-
-def draw_square(i, j):
-    x, y = j * UNIT, i * UNIT
-    square = cnv.create_rectangle((x, y), (x + UNIT, y + UNIT),
-                                  fill=COLOR_ON,
+def dessine_carre(i, j):                                                  
+    x, y = j * UNITE, i * UNITE
+    carre = cnv.create_rectangle((x, y), (x + UNITE, y + UNITE),
+                                  fill=COULEUR_1,
                                   outline='')
-    cnv.tag_lower(square)
-    return square
+    cnv.tag_lower(carre)
+    return carre
 
-
-def draw(position, direction, arrow):
-    cnv.delete(arrow)
-    (ii, jj), newdirection = bouger(position, direction, items)
+def dessin(position, direction, fourmi):                           
+    cnv.delete(fourmi)
+    (ii, jj), nouvelle_direction = bouger(position, direction, items)
     i, j = position
-    square = items[i][j]
+    carre = items[i][j]
 
-    if square == 0:
-        square = draw_square(i, j)
-        items[i][j] = square
+    if carre == 0:
+        carre = dessine_carre(i, j)
+        items[i][j] = carre
     else:
-        cnv.delete(square)
+        cnv.delete(carre)
         items[i][j] = 0
 
-    newarrow = draw_arrow(ii, jj, newdirection)
-    return (ii, jj), newdirection, newarrow
+    nouvelle_fleche = dessine_fourmi(ii, jj, nouvelle_direction)
+    return (ii, jj), nouvelle_direction, nouvelle_fleche
 
-def bouger(position, direction, items):
+def bouger(position, direction, items):                             
     i, j = position
     a, b = direction
     aa, bb = (b, -a) if items[i][j] == 0 else (-b, a)
 
     newi, newj = i + aa, j + bb
 
-    newi = newi % newheight
-    newj = newj % newwidth
+    newi = newi % nouvelle_hauteur
+    newj = newj % nouvelle_largeur
 
     return (newi, newj), (aa, bb)
 
-def anim():
-    global position, direction, arrow, id_anim, stop
+def animation():                                                                 
+    global position, direction, fourmi, id_anim, stop
     if not stop:
-        position, direction, arrow = draw(position, direction, arrow)
-    id_anim = cnv.after(DELAY, anim)
+        position, direction, fourmi = dessin(position, direction, fourmi)
+    id_anim = cnv.after(DELAI, animation)
 
-root = Tk()
-cnv = Canvas(root, width=WIDTH, height=HEIGHT, background=COLOR_OFF)
+root = Tk()                                             
+cnv = Canvas(root, width=LARGEUR, height=HEIGHT, background=COULEUR_2)
 cnv.pack()
 
-newwidth = WIDTH // UNIT
-newheight = HEIGHT // UNIT
+nouvelle_largeur = LARGEUR // UNITE                                                        
+nouvelle_hauteur = HEIGHT // UNITE
 
-def make_grid():
-    for i in range(newwidth):
-        cnv.create_line((i * UNIT, 0), (i * UNIT, HEIGHT), fill=COLOR_GRID)
-    for i in range(newheight):
-        cnv.create_line((0, i * UNIT), (WIDTH, i * UNIT), fill=COLOR_GRID)
+def faire_grille():                                                                
+    for i in range(nouvelle_largeur):
+        cnv.create_line((i * UNITE, 0), (i * UNITE, HEIGHT), fill=COULEUR_GRILLE)
+    for i in range(nouvelle_hauteur):
+        cnv.create_line((0, i * UNITE), (LARGEUR, i * UNITE), fill=COULEUR_GRILLE)
 
-
-def init():
-    global items, position, direction, arrow, stop
+def initialisation():                                                            
+    global items, position, direction, fourmi, stop
     cnv.delete("all")
     cnv.focus_set()
-    make_grid()
+    faire_grille()
 
-    items = [[0] * newwidth for _ in range(newheight)]
-    position = (newheight // 2, newwidth // 2)
+    items = [[0] * nouvelle_largeur for _ in range(nouvelle_hauteur)]
+    position = (nouvelle_hauteur // 2, nouvelle_largeur // 2)
     direction = (0, 1)
-    arrow = draw_arrow(position[0], position[1], direction)
+    fourmi = dessine_fourmi(position[0], position[1], direction)
     stop = True
-    anim()
+    animation()
 
-def on_off():
+def on_off():                           
     global stop
     stop = not stop
 
-def again():
+def réinitialisation():                            
     cnv.after_cancel(id_anim)
-    init()
+    initialisation()
 
-def step_by_step():
-    global position, direction, arrow, id_anim, stop
+def étape_par_étape():                                                     
+    global position, direction, fourmi, id_anim, stop
     if stop:
-        position, directionn, arrow = draw(position, direction, arrow)
-         
-         
-button1 = Button(root, text="On/Off", command=on_off)
+        position, direction, fourmi = dessin(position, direction, fourmi)
+
+def accélerer():                                                  
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = DELAI - 100
+
+def ralentir():                                                 
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = DELAI + 100
+
+def Lent():                                                    
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = 2000
+
+def Normal():                                                  
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = 500
+
+def Rapide():                                                  
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = 100
+
+def Très_Rapide():                                            
+    global position, direction, fourmi, id_anim, stop, DELAI
+    DELAI = 15   
+
+button1 = Button(root, text="On/Off", command=on_off)         
 button1.pack(side=LEFT, padx=5, pady=5)
 
-button2 = Button(root, text="Again", command=again)
+button2 = Button(root, text="Réinitialisation", command=réinitialisation)            
 button2.pack(side=LEFT, padx=5, pady=5)
 
-button3 = Button(root, text="Step-by-Step", command=step_by_step)
+button3 = Button(root, text="Etape par étape", command=étape_par_étape)        
 button3.pack(side=LEFT, padx=5, pady=5)
 
+button4 = Button(root, text="<<", command=ralentir)                 
+button4.pack(side=LEFT, padx=5, pady=5)
 
-init()
+button5 = Button(root, text=">>", command=accélerer)              
+button5.pack(side=LEFT, padx=5, pady=5)
+
+button6 = Button(root, text="Lent", command=Lent)           
+button6.pack(side=LEFT, padx=5, pady=5)
+
+button7 = Button(root, text="Normal", command=Normal)          
+button7.pack(side=LEFT, padx=5, pady=5)
+
+button8 = Button(root, text="Rapide", command=Rapide)          
+button8.pack(side=LEFT, padx=5, pady=5)
+
+button9 = Button(root, text="Très Rapide", command=Très_Rapide)     
+button9.pack(side=LEFT, padx=5, pady=5)
+
+initialisation()
 root.mainloop()
