@@ -174,5 +174,23 @@ button8.pack(side=LEFT, padx=5, pady=5)
 button9 = Button(root, text="Très Rapide", command=Très_Rapide)     
 button9.pack(side=LEFT, padx=5, pady=5)
 
+button10= Button(root, text="Revenir en arriere", command=revenir_en_arriere)
+button10.pack(side=LEFT, padx=5, pady=5)
+
+def revenirenarriere():
+    L=[]
+    L.append(fct ou se trouve la fourmi)
+    pour supprimer(voir cours)
+    (faire_grille)
+    global fourmi_rang, fourmi_colonne, direction, previous_steps
+    if any(previous_steps):
+        row,col,previous_dir,color=previous_steps.pop()
+        grid[rang][colonne] = color
+        direction = previous_dir
+        ant_colonne=rang
+        ant_colonne= colonne
+    print(previous_steps)
+    drawgrid()
+
 initialisation()
 root.mainloop()
