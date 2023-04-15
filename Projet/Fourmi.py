@@ -15,6 +15,8 @@ COULEUR_GRILLE = "gray30"
 COULEUR_1 = 'black'
 COULEUR_2 = 'white'
 
+mouvements_precedents = []
+
 def dessine_fourmi(i, j, direction):                
     séparation = UNITE // 8
     est = (séparation, UNITE // 2)
@@ -51,6 +53,9 @@ def dessine_carre(i, j):
     return carre
 
 def dessin(position, direction, fourmi):                           
+    global mouvements_precedents
+    etat_case = items[position[0]][position[1]]
+    mouvements_precedents.append((position, direction, etat_case))
     cnv.delete(fourmi)
     (ii, jj), nouvelle_direction = bouger(position, direction, items)
     i, j = position
@@ -84,7 +89,9 @@ def animation():
         position, direction, fourmi = dessin(position, direction, fourmi)
     id_anim = cnv.after(DELAI, animation)
 
-root = Tk()                                             
+root = Tk()        
+root.title("Fourmi de Langton")  
+root.geometry("1000x1000")                                   
 cnv = Canvas(root, width=LARGEUR, height=HAUTEUR, background=COULEUR_2)
 cnv.pack()
 
@@ -123,6 +130,22 @@ def étape_par_étape():
     if stop:
         position, direction, fourmi = dessin(position, direction, fourmi)
 
+def annuler():
+    global position, direction, fourmi, id_anim, stop, items, mouvements_precedents
+    if mouvements_precedents:
+        dernier_mouvement = mouvements_precedents.pop()
+        position, direction, etat_case = dernier_mouvement
+        i, j = position
+        if etat_case == 0:
+            cnv.delete(items[i][j])
+            items[i][j] = 1
+        else:
+            items[i][j] = dessine_carre(i, j)
+            cnv.delete(etat_case)
+        cnv.delete(fourmi)
+        nouvelle_fleche = dessine_fourmi(i, j, direction)
+        fourmi = nouvelle_fleche
+        
 def accélerer():                                                  
     global position, direction, fourmi, id_anim, stop, DELAI
     DELAI = DELAI - 100
@@ -174,23 +197,8 @@ button8.pack(side=LEFT, padx=5, pady=5)
 button9 = Button(root, text="Très Rapide", command=Très_Rapide)     
 button9.pack(side=LEFT, padx=5, pady=5)
 
-button10= Button(root, text="Revenir en arriere", command=revenir_en_arriere)
+button10 = Button(root, text="Etape précédente", command=annuler)     
 button10.pack(side=LEFT, padx=5, pady=5)
-
-def revenirenarriere():
-    L=[]
-    L.append(fct ou se trouve la fourmi)
-    pour supprimer(voir cours)
-    (faire_grille)
-    global fourmi_rang, fourmi_colonne, direction, previous_steps
-    if any(previous_steps):
-        row,col,previous_dir,color=previous_steps.pop()
-        grid[rang][colonne] = color
-        direction = previous_dir
-        ant_colonne=rang
-        ant_colonne= colonne
-    print(previous_steps)
-    drawgrid()
 
 initialisation()
 root.mainloop()
