@@ -87,60 +87,60 @@ def bouger(position, direction, items):
 
 def animation():                                                                 
     global position, direction, fourmi, id_anim, stop
-    if not stop:
+    if not stop:                                                              
         position, direction, fourmi = dessin(position, direction, fourmi)
     id_anim = cnv.after(DELAI, animation)  #cnv.after ca sert a lancer l animation apres un ceratin delai.
 
 root = Tk()        
 root.title("Fourmi de Langton")  
-root.geometry("1000x1000")                                   
+root.geometry("1000x1000")                                         #esthetique
 cnv = Canvas(root, width=LARGEUR, height=HAUTEUR, background=COULEUR_2)
 cnv.pack()
 
-nouvelle_largeur = LARGEUR // UNITE                                                        
+nouvelle_largeur = LARGEUR // UNITE             #pour diviser la grille totale par des cases, pour pouvoir creer des petites cases                                          
 nouvelle_hauteur = HAUTEUR // UNITE
 
 def faire_grille():                                                                
     for i in range(nouvelle_largeur):
-        cnv.create_line((i * UNITE, 0), (i * UNITE, HAUTEUR), fill=COULEUR_GRILLE)
-    for i in range(nouvelle_hauteur):
+        cnv.create_line((i * UNITE, 0), (i * UNITE, HAUTEUR), fill=COULEUR_GRILLE)   #fonction qui nous aide a faire une grille et donc  tous les cases  doivent etre initialise en blanc
+    for i in range(nouvelle_hauteur):                                                #
         cnv.create_line((0, i * UNITE), (LARGEUR, i * UNITE), fill=COULEUR_GRILLE)
 
 def initialisation():                                                            
     global items, position, direction, fourmi, stop
     cnv.delete("all")
-    cnv.focus_set()
+    cnv.focus_set()       #ce concentrer sur un widget sur un objet donc ce contrer sur la fleche
     faire_grille()
 
     items = [[0] * nouvelle_largeur for _ in range(nouvelle_hauteur)]
-    position = (nouvelle_hauteur // 2, nouvelle_largeur // 2)
+    position = (nouvelle_hauteur // 2, nouvelle_largeur // 2)               #on divise long et largeur par 2 pour que la flece soit au centre du carre 
     direction = (0, 1)
     fourmi = dessine_fourmi(position[0], position[1], direction)
-    stop = True
+    stop = True                                  # animation pas commence
     animation()
 
 def on_off():                           
-    global stop
+    global stop                    #animation commence ou non
     stop = not stop
 
 def réinitialisation():                            
-    cnv.after_cancel(id_anim)
+    cnv.after_cancel(id_anim)        #pour reinitialiser la fourmi
     initialisation()
 
 def étape_par_étape():                                                     
     global position, direction, fourmi, id_anim, stop
-    if stop:
+    if stop:                                           #la fourmi marche etape par etape
         position, direction, fourmi = dessin(position, direction, fourmi)
 
 def annuler():
     global position, direction, fourmi, id_anim, stop, items, mouvements_precedents
     if mouvements_precedents:
         dernier_mouvement = mouvements_precedents.pop()
-        position, direction, etat_case = dernier_mouvement
+        position, direction, etat_case = dernier_mouvement        #annuler des steps
         i, j = position
-        if etat_case == 0:
-            cnv.delete(items[i][j])
-            items[i][j] = 1
+        if etat_case == 0:       #0 couleur blanche
+            cnv.delete(items[i][j])         #pour supprimer(i,j) abscisse ordonne sur la case ou se trouve la fourmi
+            items[i][j] = 1             # donc la case redevient noir si elle etait balnche quan don retourne en arriere
         else:
             items[i][j] = dessine_carre(i, j)
             cnv.delete(etat_case)
@@ -149,31 +149,31 @@ def annuler():
         fourmi = nouvelle_fleche
         
 def accélerer():                                                  
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI   # fct accelerer la fourmi graduellement
     DELAI = DELAI - 100
 
 def ralentir():                                                 
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI   #fct ralentir la fourmi graduellement
     DELAI = DELAI + 100
 
 def Lent():                                                    
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI #fct pour que la fourmi passe lentement
     DELAI = 2000
 
 def Normal():                                                  
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI #fct rapidite normal
     DELAI = 500
 
 def Rapide():                                                  
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI   #fct fourmi rapide
     DELAI = 100
 
 def Très_Rapide():                                            
-    global position, direction, fourmi, id_anim, stop, DELAI
+    global position, direction, fourmi, id_anim, stop, DELAI  #fct tres rapide
     DELAI = 15   
-
+#creation des boutons pour nos fct           
 button1 = Button(root, text="On/Off", command=on_off)         
-button1.pack(side=LEFT, padx=5, pady=5)
+button1.pack(side=LEFT, padx=5, pady=5)           
 
 button2 = Button(root, text="Réinitialisation", command=réinitialisation)            
 button2.pack(side=LEFT, padx=5, pady=5)
@@ -185,7 +185,7 @@ button4 = Button(root, text="<<", command=ralentir)
 button4.pack(side=LEFT, padx=5, pady=5)
 
 button5 = Button(root, text=">>", command=accélerer)              
-button5.pack(side=LEFT, padx=5, pady=5)
+button5.pack(side=LEFT, padx=5, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
 
 button6 = Button(root, text="Lent", command=Lent)           
 button6.pack(side=LEFT, padx=5, pady=5)
@@ -203,4 +203,4 @@ button10 = Button(root, text="Etape précédente", command=annuler)
 button10.pack(side=LEFT, padx=5, pady=5)
 
 initialisation()
-root.mainloop()
+root.mainloop()               #pour pouvoir donc faire une boucle
