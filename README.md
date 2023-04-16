@@ -17,7 +17,7 @@ Il y a une fourmi au centre de la grille, quand elle est sur une case blanche el
 
 * Explications du programme
 
-.En premier nous avons importer la bibliothèque Tkinter car avec celle-ci on peut créer une interface graphique.
+- En premier nous avons importer la bibliothèque Tkinter car avec celle-ci on peut créer une interface graphique.
 Nous avons définis des variables tel que la hauteur, largeur de la grille. Des variables "couleur_1" et "couleur_2" qui seront les couleurs des états des cases où la fourmi passe, c'est-à-dire blanc et noir.
 Nous avons défini en premier la fonction "dessine_fourmi". Cette fonction permet de dessiner un fourmi en prenant en compte la distance en la tête de la flèche et la case et la queue de la flèche et la case. Nous avons défini des variables ( est, nord, ouest, sud) qui pourront nous aider à connaître l'orientation de la flèche afin de connaître sa gauche et sa droite et donc de savoir vers où elle ira et en quelle couleur deviendra la case où elle se trouvait.
 La fonction "dessine_carre" permet de créer les case de la grille mais également de changer les couleurs. 
