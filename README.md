@@ -12,6 +12,7 @@
 # Documentation du projet
 
 * Règles de la fourmi
+* 
 Il y a une fourmi au centre de la grille, quand elle est sur une case blanche elle va sur la case à sa droite. Et la case où la fourmi était devient noire. Dans le cas où la fourmi aurait été sur une case noire, elle serait aller sur la case à sa gauche, et l'ancienne case où elle se trouvait deviendrait blanche.
 
 * Explications du programme
