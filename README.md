@@ -10,7 +10,7 @@
 * https://github.com/uvsq22206245/Projet-Fourmi
 
 # Documentation du projet
-
+* Ce projet a été travaillé la plupart du temps en groupe à travers des réunions zoom, ce qui explique que les commits venaient des fois d'un seul ordinateur(celui d'Aginthan) et les TD sans prof. Effectivement Aginthan trouve souvent les solutions avant mais on a tous essayer et beaucoup travailer sur ce projet et réfléchis à la problématique tout au long de ce dernier 
 * Règles de la fourmi
  
 Il y a une fourmi au centre de la grille, quand elle est sur une case blanche elle va sur la case à sa droite. Et la case où la fourmi était devient noire. Dans le cas où la fourmi aurait été sur une case noire, elle serait aller sur la case à sa gauche, et l'ancienne case où elle se trouvait deviendrait blanche.
