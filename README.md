@@ -10,7 +10,7 @@
 * https://github.com/uvsq22206245/Projet-Fourmi
                                                                    Fourmi de Langton
 # Documentation du projet
-* Ce projet a été travaillé la plupart du temps en groupe à travers des réunions zoom, ce qui explique que les commits venaient des fois d'un seul ordinateur(celui d'Aginthan) et les TD sans prof. Effectivement Aginthan trouve souvent les solutions avant mais on a tous essayer et beaucoup travailer sur ce projet et réfléchis à la problématique tout au long de ce dernier 
+* Ce projet a été travaillé la plupart du temps en groupe à travers des réunions zoom, ce qui explique le fait que les commits de quelques fonctions venaient des fois d'un seul ordinateur. Effectivement meme si Aginthan trouvait parfois les solutions avant nous lors de nos reunions on a tous essayer et beaucoup travailer sur ce projet et réfléchis à la problématique tout au long de ce dernier 
 
 Petit points historique a propos de la fourmi de langton:
 C'est un concept introduit par Christopher Langton en 1986, qui illustre le principe de comportement emergent. il s agit d une systeme de regle tres simple mais dont son evolution devient de plus en plus complexe
