@@ -113,7 +113,7 @@ def initialisation():
     faire_grille()
 
     items = [[0] * nouvelle_largeur for _ in range(nouvelle_hauteur)]
-    position = (nouvelle_hauteur // 2, nouvelle_largeur // 2)               #on divise long et largeur par 2 pour que la flece soit au centre du carre 
+    position = (nouvelle_hauteur // 2, nouvelle_largeur // 2)               #on divise longueur et largeur par 2 pour que la flece soit au centre du carre 
     direction = (0, 1)
     fourmi = dessine_fourmi(position[0], position[1], direction)
     stop = True                                  # animation pas commence
