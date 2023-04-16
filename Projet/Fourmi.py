@@ -11,7 +11,7 @@ UNITE = COTE // 7
 LARGEUR_FLECHE = UNITE // 8
 DELAI = 500
 
-COULEUR_GRILLE = "gray30"
+COULEUR_GRILLE = "gray"
 COULEUR_1 = 'black'
 COULEUR_2 = 'white'
 
