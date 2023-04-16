@@ -8,12 +8,16 @@
 
 # URL de dépôt
 * https://github.com/uvsq22206245/Projet-Fourmi
-
+                                                                   Fourmi de Langton
 # Documentation du projet
 * Ce projet a été travaillé la plupart du temps en groupe à travers des réunions zoom, ce qui explique que les commits venaient des fois d'un seul ordinateur(celui d'Aginthan) et les TD sans prof. Effectivement Aginthan trouve souvent les solutions avant mais on a tous essayer et beaucoup travailer sur ce projet et réfléchis à la problématique tout au long de ce dernier 
+
+Petit points historique a propos de la fourmi de langton:
+C'est un concept introduit par Christopher Langton en 1986, qui illustre le principe de comportement emergent. il s agit d une systeme de regle tres simple mais dont son evolution devient de plus en plus complexe
+
 * Règles de la fourmi
  
-Il y a une fourmi au centre de la grille, quand elle est sur une case blanche elle va sur la case à sa droite. Et la case où la fourmi était devient noire. Dans le cas où la fourmi aurait été sur une case noire, elle serait aller sur la case à sa gauche, et l'ancienne case où elle se trouvait deviendrait blanche.
+Il y a une fourmi au centre de la grille, quand elle est sur une case blanche elle tourne 90 degers vers la case à sa droite. Et la case où la fourmi était devient noire. Dans le cas où la fourmi aurait été sur une case noire, elle tournerait de 90 degres sur la case à sa gauche, et l'ancienne case où elle se trouvait deviendrait blanche.
 
 * Explications du programme
 
@@ -21,7 +25,7 @@ Il y a une fourmi au centre de la grille, quand elle est sur une case blanche el
  
  Nous avons définis des variables tel que la hauteur, largeur de la grille, unité qui sera la taille des cases de la grille, délai qui est le délai temps entre les changement de place de la fourmi. Des variables "couleur_1" et "couleur_2" qui seront les couleurs des états des cases où la fourmi passe, c'est-à-dire blanc et noir.
  
- Nous avons défini en premier la fonction "dessine_fourmi". Cette fonction permet de dessiner un fourmi en prenant en compte la distance en la tête de la flèche et la case et la queue de la flèche et la case. Nous avons défini des variables ( est, nord, ouest, sud) qui pourront nous aider à connaître l'orientation de la flèche afin de connaître sa gauche et sa droite et donc de savoir vers où elle ira et en quelle couleur deviendra la case où elle se trouvait.
+ Nous avons défini en premier la fonction "dessine_fourmi". Cette fonction permet de dessiner un fourmi en prenant en compte la distance en la tête de la flèche et la case et la queue de la flèche et la case. Nous avons défini des variables ( est, nord, ouest, sud) qui pourront nous aider à connaître l'orientation de la flèche afin de connaître sa gauche et sa droite et de pouvoir la centrer dans la case
  
  La fonction "dessine_carre" permet de créer les case de la grille mais également de changer les couleurs. 
  
@@ -34,6 +38,10 @@ C'est également dans cette fonction dque nous avons établis le tore.
  
  La fonction "initialisation" nous permet de donner une position de départ à notre fourmi, en l'occurence c'est le milieu de la grille.
  
+ -creation des bouttons:
+
+effectivement on a creer des boutons allant de 1 jusqu'a 10. Chacun de ces derniers va nous servir pour executer notre programme.
+
  La fonction "on_off" est une fonction très simple elle permet simplement de mettre en marche ou en pause la fourmi lorsqu'elle est en mode "animation", c'est-à-dire qu'elle se dépalce toute seule.
 
  La fonction "réinitialisation" permet de ramener la fourmi à la posistion de départ.
@@ -42,6 +50,6 @@ C'est également dans cette fonction dque nous avons établis le tore.
  
  La fontion "annuler" permet à la fourmi de retourner de reculer d'une étape la fourmi. Cela annule déplacement qu'elle a fait.
  
- Les fonctions qui suivent permettent de gérer la vitesse à laquelle se déplace la fourmi :  vite, très vite, lentement, très lentement etc. Et c'est grâce au délais que cela est possible.
+ Les fonctions qui suivent sont des bouttons qui permettent de gérer la vitesse à laquelle se déplace la fourmi :  vite, très vite, lentement, très lentement. Et c'est grâce au délais que cela est possible.
  
- Enfin nous avons défini des boutons qui, grâce aux fonctions énumérées etexpliquées plus haut, permettent de mettre pause, de reculer, d'avancer pas à pas, d'accélerer, de ralentir etc.
+ Enfin nous avons défini des boutons qui, grâce aux fonctions énumérées etexpliquées plus haut, permettent de mettre pause, de reculer, d'avancer pas à pas, d'accélerer, de ralentir.
