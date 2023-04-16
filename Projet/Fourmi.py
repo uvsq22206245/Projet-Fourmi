@@ -56,21 +56,21 @@ def dessine_carre(i, j):       #dessin les petites cases noires
 
 def dessin(position, direction, fourmi):     # fct qui nous laisse "fusionner" les fourmi et les cases ensemble                      
     global mouvements_precedents             
-    etat_case = items[position[0]][position[1]]  #enregistret la position de la fourmi
+    etat_case = items[position[0]][position[1]]  #enregistrer la position de la fourmi
     mouvements_precedents.append((position, direction, etat_case))
     cnv.delete(fourmi) 
     (ii, jj), nouvelle_direction = bouger(position, direction, items)
     i, j = position
-    carre = items[i][j] #
+    carre = items[i][j] #fct qui permet d'appeler un objet, items=grille
 
-    if carre == 0:
+    if carre == 0:  #0 c'est la couleur blanche comme on a l'a definit avant, si le carre est blanc le carre va resevoir la fct dessine carre, et quand il est blanc il va devenir noir 
         carre = dessine_carre(i, j)
-        items[i][j] = carre
+        items[i][j] = carre     #la grille recoit le carre mais d une couleur precise(soit noir soit blanc)
     else:
-        cnv.delete(carre)
-        items[i][j] = 0
+        cnv.delete(carre) #eneleve une case noir
+        items[i][j] = 0  #definit la couleur blanche(change une case noir en blanc)
 
-    nouvelle_fleche = dessine_fourmi(ii, jj, nouvelle_direction)
+    nouvelle_fleche = dessine_fourmi(ii, jj, nouvelle_direction) #i pour la queue de la fourmi et le deuxieme pour la tete de la fourmi et meme chose pour j.
     return (ii, jj), nouvelle_direction, nouvelle_fleche
 
 def bouger(position, direction, items):                             
@@ -78,10 +78,10 @@ def bouger(position, direction, items):
     a, b = direction
     aa, bb = (b, -a) if items[i][j] == 0 else (-b, a)
 
-    newi, newj = i + aa, j + bb
+    newi, newj = i + aa, j + bb           #nouvelle position et nouvelle direction de la fourmi par rapport a son deplacement
 
-    newi = newi % nouvelle_hauteur
-    newj = newj % nouvelle_largeur
+    newi = newi % nouvelle_hauteur       # pour faire le tore= quand la fourmi depace la grille et elle revient de l autre cote, on calcule la nouvelle pos de la fourmi avec le modulo et si le modulo est egal a rien il va remettre de la autre cote
+    newj = newj % nouvelle_largeur      #meme chose mais avec largeur
 
     return (newi, newj), (aa, bb)
 
@@ -89,7 +89,7 @@ def animation():
     global position, direction, fourmi, id_anim, stop
     if not stop:
         position, direction, fourmi = dessin(position, direction, fourmi)
-    id_anim = cnv.after(DELAI, animation)
+    id_anim = cnv.after(DELAI, animation)  #cnv.after ca sert a lancer l animation apres un ceratin delai.
 
 root = Tk()        
 root.title("Fourmi de Langton")  
