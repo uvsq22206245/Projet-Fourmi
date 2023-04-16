@@ -1,7 +1,7 @@
 # Projet de Fourmi de Langton
 # Source : (http://pascal.ortiz.free.fr/contents/tkinter/projets_tkinter/langton/langton.html)
 # La fourmi de Langton - Documentation
-
+#base: si la case est blanche la fourmiepasse vers la droite si la case est noir la fourmi passe vers la gauche
 from tkinter import *
 
 COTE = 600                          
@@ -11,32 +11,34 @@ UNITE = COTE // 7
 LARGEUR_FLECHE = UNITE // 8
 DELAI = 500
 
-COULEUR_GRILLE = "gray30"
+COULEUR_GRILLE = "gray"
 COULEUR_1 = 'black'
 COULEUR_2 = 'white'
 
 mouvements_precedents = []
-
-def dessine_fourmi(i, j, direction):                
-    séparation = UNITE // 8
-    est = (séparation, UNITE // 2)
-    ouest = (UNITE - séparation, UNITE // 2)
-    nord = (UNITE // 2, séparation)
+# (i,j,direction): ordonne, abscisse,direction de la fleche)
+# x= j*unite et y= i*unite
+#unite+une case complette
+def dessine_fourmi(i, j, direction):     # dessine la fourmi           
+    séparation = UNITE // 8  #c'est la separation entre la grille et la fleche, ca controle la taille de la fleche UNIT= taille d une case
+    est = (séparation, UNITE // 2) # pour centrer pour qu elle ne soit pas pencher
+    ouest = (UNITE - séparation, UNITE // 2) 
+    nord = (UNITE // 2, séparation)                         # on a utilise nord sud est et ouest pour pouvoir a la fin mettre la felche au centre de notre programme
     sud = (UNITE // 2, UNITE - séparation)
-    x, y = j * UNITE, i * UNITE
-    if direction == (0, 1):
-        A = (x + est[0], y + est[1])
+    x, y = j * UNITE, i * UNITE                     #[0] la ou la fleche ne pointe pas et [1] la ou la fleche pointe
+    if direction == (0, 1):                          #coordonne pour que la fleche pointe vers la droite
+        A = (x + est[0], y + est[1])                   
         B = (x + ouest[0], y + ouest[1])
     elif direction ==  (-1, 0):
         A = (x + sud[0], y + sud[1])
-        B = (x + nord[0], y + nord[1])
-    elif direction ==  (0, -1):
+        B = (x + nord[0], y + nord[1])           # A c est pour le debut de la fleche (sa tete) et B c est la fin 
+    elif direction ==  (0, -1):                  # cette fonction est utilise pour dessiner et centrer l emplacement de la fourmi
         B = (x + est[0], y + est[1])
         A = (x + ouest[0], y + ouest[1])
     else:
         B = (x + sud[0], y + sud[1])
         A = (x + nord[0], y + nord[1])
-    return cnv.create_line(
+    return cnv.create_line(                 #ligne ou on remplie la fleche et son contour
         A,
         B,
         width=LARGEUR_FLECHE,
@@ -44,22 +46,22 @@ def dessine_fourmi(i, j, direction):
         fill='red',
         arrowshape=(18, 30, 8))
 
-def dessine_carre(i, j):                                                  
+def dessine_carre(i, j):       #dessin les petites cases noires                                              
     x, y = j * UNITE, i * UNITE
-    carre = cnv.create_rectangle((x, y), (x + UNITE, y + UNITE),
-                                  fill=COULEUR_1,
-                                  outline='')
-    cnv.tag_lower(carre)
+    carre = cnv.create_rectangle((x, y), (x + UNITE, y + UNITE), #cnv = fct qui nous permet de creer la page
+                                  fill=COULEUR_1, #colorier les carres
+                                  outline='') #repassage du carre
+    cnv.tag_lower(carre) #ca permet de bouger un objet
     return carre
 
-def dessin(position, direction, fourmi):                           
-    global mouvements_precedents
-    etat_case = items[position[0]][position[1]]
+def dessin(position, direction, fourmi):     # fct qui nous laisse "fusionner" les fourmi et les cases ensemble                      
+    global mouvements_precedents             
+    etat_case = items[position[0]][position[1]]  #enregistret la position de la fourmi
     mouvements_precedents.append((position, direction, etat_case))
-    cnv.delete(fourmi)
+    cnv.delete(fourmi) 
     (ii, jj), nouvelle_direction = bouger(position, direction, items)
     i, j = position
-    carre = items[i][j]
+    carre = items[i][j] #
 
     if carre == 0:
         carre = dessine_carre(i, j)
