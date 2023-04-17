@@ -40,7 +40,7 @@ C'est également dans cette fonction dque nous avons établis le tore.
  
  -creation des bouttons:
 
-effectivement on a creer des boutons allant de 1 jusqu'a 10. Chacun de ces derniers va nous servir pour executer notre programme.
+effectivement on a creer des boutons allant de 1 jusqu'a 12. Chacun de ces derniers va nous servir pour executer notre programme. 
 
  La fonction "on_off" est une fonction très simple elle permet simplement de mettre en marche ou en pause la fourmi lorsqu'elle est en mode "animation", c'est-à-dire qu'elle se dépalce toute seule.
 
@@ -49,6 +49,8 @@ effectivement on a creer des boutons allant de 1 jusqu'a 10. Chacun de ces derni
  La fonction "étape_par_étape" permet de faire avancer la fourmi pas à pas (en appuyant sur un bouton, pour plus de précision voir en bas).
  
  La fontion "annuler" permet à la fourmi de retourner de reculer d'une étape la fourmi. Cela annule déplacement qu'elle a fait.
+ 
+ Les fonctions Enregistrer et ouvrir sont sensés nous permettre de sauvegarder notre interface dans un fichier afin de pouvoir récupérer notre jeu dns l'état dans equel on l'a laissé.
  
  Les fonctions qui suivent sont des bouttons qui permettent de gérer la vitesse à laquelle se déplace la fourmi :  vite, très vite, lentement, très lentement. Et c'est grâce au délais que cela est possible.
  
