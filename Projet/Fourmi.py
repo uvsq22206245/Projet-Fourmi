@@ -172,34 +172,34 @@ def Très_Rapide():
     global position, direction, fourmi, id_anim, stop, DELAI  #fct tres rapide
     DELAI = 15   
 #creation des boutons pour nos fct           
-button1 = Button(root, text="On/Off", background="red",width=10,height=3, command=on_off)         
+button1 = Button(root, text="On/Off", background="red",width=10,height=3,font=("Arial Bold", 9), command=on_off)         
 button1.pack(side=LEFT, padx=10, pady=5)           
 
-button2 = Button(root, text="Réinitialisation", background="red",width=10,height=3, command=réinitialisation)            
+button2 = Button(root, text="Réinitialisation", background="red",width=13,height=3,font=("Arial Bold", 9), command=réinitialisation)            
 button2.pack(side=LEFT, padx=10, pady=5)
 
-button3 = Button(root, text="Etape par étape", background="orange",width=15,height=3, command=étape_par_étape)        
+button3 = Button(root, text="Etape par étape", background="orange",width=15,height=3,font=("Arial Bold", 9), command=étape_par_étape)        
 button3.pack(side=LEFT, padx=10, pady=5)
 
-button4 = Button(root, text="<<", background="yellow",width=5,height=3, command=ralentir)                 
+button4 = Button(root, text="<<", background="yellow",width=5,height=3,font=("Arial Bold", 9), command=ralentir)                 
 button4.pack(side=LEFT, padx=10, pady=5)
 
-button5 = Button(root, text=">>", background="yellow",width=5,height=3, command=accélerer)              
+button5 = Button(root, text=">>", background="yellow",width=5,height=3,font=("Arial Bold", 9), command=accélerer)              
 button5.pack(side=LEFT, padx=10, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
 
-button6 = Button(root, text="Lent", background="green",width=10,height=3, command=Lent)           
+button6 = Button(root, text="Lent", background="green",width=5,height=3,font=("Arial Bold", 9), command=Lent)           
 button6.pack(side=LEFT, padx=10, pady=5)
 
-button7 = Button(root, text="Normal", background="blue",width=10,height=3,command=Normal)          
+button7 = Button(root, text="Normal", background="blue",width=10,height=3,font=("Arial Bold", 9),command=Normal)          
 button7.pack(side=LEFT, padx=10, pady=5)
 
-button8 = Button(root, text="Rapide", background="blue",width=10,height=3, command=Rapide)          
+button8 = Button(root, text="Rapide", background="blue",width=10,height=3,font=("Arial Bold", 9), command=Rapide)          
 button8.pack(side=LEFT, padx=10, pady=5)
 
-button9 = Button(root, text="Très Rapide", background="indigo",width=10,height=3, command=Très_Rapide)     
+button9 = Button(root, text="Très Rapide", background="indigo",width=10,height=3,font=("Arial Bold", 9), command=Très_Rapide)     
 button9.pack(side=LEFT, padx=10, pady=5)
 
-button10 = Button(root, text="Etape précédente", background="purple",width=20,height=3, command=annuler)     
+button10 = Button(root, text="Etape précédente", background="purple",width=15,height=3,font=("Arial Bold", 9), command=annuler)     
 button10.pack(side=LEFT, padx=10, pady=5)
 
 initialisation()
