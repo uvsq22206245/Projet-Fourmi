@@ -7,7 +7,7 @@ from tkinter import *
 COTE = 600                          
 LARGEUR = COTE
 HAUTEUR = COTE
-UNITE = COTE // 7
+UNITE = COTE // 9
 LARGEUR_FLECHE = UNITE // 8
 DELAI = 500
 
