@@ -215,7 +215,7 @@ button8.pack(side=LEFT, padx=2, pady=5)
 button9 = Button(root, text="Très Rapide", background="indigo",width=10,height=3,font=("Arial Bold", 9), command=Très_Rapide)     
 button9.pack(side=LEFT, padx=2, pady=5)
 
-button10 = Button(root, text="Etape précédente", background="purple",width=15,height=3,font=("Arial Bold", 9), command=annuler)     
+button10 = Button(root, text="Etape précédente", background="indigo",width=15,height=3,font=("Arial Bold", 9), command=annuler)     
 button10.pack(side=LEFT, padx=2, pady=5)
 
 button11 = Button(root, text="Enregistrer sous", background="purple",width=15,height=3,font=("Arial Bold", 9), command=enregistrer_sous)     
