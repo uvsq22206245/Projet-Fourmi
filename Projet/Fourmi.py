@@ -172,34 +172,34 @@ def Très_Rapide():
     global position, direction, fourmi, id_anim, stop, DELAI  #fct tres rapide
     DELAI = 15   
 #creation des boutons pour nos fct           
-button1 = Button(root, text="On/Off", command=on_off)         
+button1 = Button(root, text="On/Off", background="red", command=on_off)         
 button1.pack(side=LEFT, padx=5, pady=5)           
 
-button2 = Button(root, text="Réinitialisation", command=réinitialisation)            
+button2 = Button(root, text="Réinitialisation", background="red", command=réinitialisation)            
 button2.pack(side=LEFT, padx=5, pady=5)
 
-button3 = Button(root, text="Etape par étape", command=étape_par_étape)        
+button3 = Button(root, text="Etape par étape", background="orange", command=étape_par_étape)        
 button3.pack(side=LEFT, padx=5, pady=5)
 
-button4 = Button(root, text="<<", command=ralentir)                 
+button4 = Button(root, text="<<", background="yellow", command=ralentir)                 
 button4.pack(side=LEFT, padx=5, pady=5)
 
-button5 = Button(root, text=">>", command=accélerer)              
+button5 = Button(root, text=">>", background="green", command=accélerer)              
 button5.pack(side=LEFT, padx=5, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
 
-button6 = Button(root, text="Lent", command=Lent)           
+button6 = Button(root, text="Lent", background="green", command=Lent)           
 button6.pack(side=LEFT, padx=5, pady=5)
 
-button7 = Button(root, text="Normal", command=Normal)          
+button7 = Button(root, text="Normal", background="blue",command=Normal)          
 button7.pack(side=LEFT, padx=5, pady=5)
 
-button8 = Button(root, text="Rapide", command=Rapide)          
+button8 = Button(root, text="Rapide", background="blue", command=Rapide)          
 button8.pack(side=LEFT, padx=5, pady=5)
 
-button9 = Button(root, text="Très Rapide", command=Très_Rapide)     
+button9 = Button(root, text="Très Rapide", background="indigo", command=Très_Rapide)     
 button9.pack(side=LEFT, padx=5, pady=5)
 
-button10 = Button(root, text="Etape précédente", command=annuler)     
+button10 = Button(root, text="Etape précédente", background="purple", command=annuler)     
 button10.pack(side=LEFT, padx=5, pady=5)
 
 initialisation()
