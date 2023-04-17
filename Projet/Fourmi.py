@@ -3,6 +3,7 @@
 # La fourmi de Langton - Documentation
 #base: si la case est blanche la fourmiepasse vers la droite si la case est noir la fourmi passe vers la gauche
 from tkinter import *
+from tkinter import filedialog
 
 COTE = 600                          
 LARGEUR = COTE
@@ -170,37 +171,46 @@ def Rapide():
 
 def Très_Rapide():                                            
     global position, direction, fourmi, id_anim, stop, DELAI  #fct tres rapide
-    DELAI = 15   
+    DELAI = 15 
+    
+def enregistrer_sous():
+    fichier= filedialog.asksaveasfilename(title="Enregistrer mon jeu", filetypes=[("Fichier jeu",".jeu")],defaultextension=".jeu")
+    ecrire_fichier = open(fichier, "w")
+    ecrire_fichier.close() #quand on ouvre une base de donner faut aussi la fermer pour que le logicile ne fait pas de probleme
+
 #creation des boutons pour nos fct           
 button1 = Button(root, text="On/Off", background="red",width=10,height=3,font=("Arial Bold", 9), command=on_off)         
-button1.pack(side=LEFT, padx=10, pady=5)           
+button1.pack(side=LEFT, padx=5, pady=5)           
 
 button2 = Button(root, text="Réinitialisation", background="red",width=13,height=3,font=("Arial Bold", 9), command=réinitialisation)            
-button2.pack(side=LEFT, padx=10, pady=5)
+button2.pack(side=LEFT, padx=5, pady=5)
 
 button3 = Button(root, text="Etape par étape", background="orange",width=15,height=3,font=("Arial Bold", 9), command=étape_par_étape)        
-button3.pack(side=LEFT, padx=10, pady=5)
+button3.pack(side=LEFT, padx=5, pady=5)
 
 button4 = Button(root, text="<<", background="yellow",width=5,height=3,font=("Arial Bold", 9), command=ralentir)                 
-button4.pack(side=LEFT, padx=10, pady=5)
+button4.pack(side=LEFT, padx=5, pady=5)
 
 button5 = Button(root, text=">>", background="yellow",width=5,height=3,font=("Arial Bold", 9), command=accélerer)              
-button5.pack(side=LEFT, padx=10, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
+button5.pack(side=LEFT, padx=5, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
 
 button6 = Button(root, text="Lent", background="green",width=5,height=3,font=("Arial Bold", 9), command=Lent)           
-button6.pack(side=LEFT, padx=10, pady=5)
+button6.pack(side=LEFT, padx=5, pady=5)
 
 button7 = Button(root, text="Normal", background="blue",width=10,height=3,font=("Arial Bold", 9),command=Normal)          
-button7.pack(side=LEFT, padx=10, pady=5)
+button7.pack(side=LEFT, padx=5, pady=5)
 
 button8 = Button(root, text="Rapide", background="blue",width=10,height=3,font=("Arial Bold", 9), command=Rapide)          
-button8.pack(side=LEFT, padx=10, pady=5)
+button8.pack(side=LEFT, padx=5, pady=5)
 
 button9 = Button(root, text="Très Rapide", background="indigo",width=10,height=3,font=("Arial Bold", 9), command=Très_Rapide)     
-button9.pack(side=LEFT, padx=10, pady=5)
+button9.pack(side=LEFT, padx=5, pady=5)
 
 button10 = Button(root, text="Etape précédente", background="purple",width=15,height=3,font=("Arial Bold", 9), command=annuler)     
-button10.pack(side=LEFT, padx=10, pady=5)
+button10.pack(side=LEFT, padx=5, pady=5)
+
+button11 = Button(root, text="Enregistrer sous", background="purple",width=15,height=3,font=("Arial Bold", 9), command=enregistrer_sous)     
+button11.pack(side=LEFT, padx=5, pady=5)
 
 initialisation()
 root.mainloop()               #pour pouvoir donc faire une boucle
