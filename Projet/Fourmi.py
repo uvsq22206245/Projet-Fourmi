@@ -184,7 +184,7 @@ button3.pack(side=LEFT, padx=10, pady=5)
 button4 = Button(root, text="<<", background="yellow", command=ralentir)                 
 button4.pack(side=LEFT, padx=10, pady=5)
 
-button5 = Button(root, text=">>", background="green", command=accélerer)              
+button5 = Button(root, text=">>", background="yellow", command=accélerer)              
 button5.pack(side=LEFT, padx=10, pady=5)                                    #padx et pady c est la distance entre les boutons x ordonne et y abscisse
 
 button6 = Button(root, text="Lent", background="green", command=Lent)           
