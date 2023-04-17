@@ -12,8 +12,8 @@
 # Documentation du projet
 * Ce projet a été travaillé la plupart du temps en groupe à travers des réunions zoom, ce qui explique le fait que les commits de quelques fonctions venaient des fois d'un seul ordinateur. Effectivement meme si Aginthan trouvait parfois les solutions avant nous lors de nos reunions on a tous essayer et beaucoup travailer sur ce projet et réfléchis à la problématique tout au long de ce dernier 
 
-Petit points historique a propos de la fourmi de langton:
-C'est un concept introduit par Christopher Langton en 1986, qui illustre le principe de comportement emergent. il s agit d une systeme de regle tres simple mais dont son evolution devient de plus en plus complexe
+Petit point historique à propos de la fourmi de Langton :
+C'est un concept introduit par Christopher Langton en 1986, qui illustre le principe de comportement émergent. Il s'agit d'un système de règle très simple, mais dont son évolution devient de plus en plus complexe.
 
 * Règles de la fourmi
  
