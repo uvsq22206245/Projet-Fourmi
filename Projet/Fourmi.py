@@ -94,7 +94,8 @@ def animation():
 
 root = Tk()        
 root.title("Fourmi de Langton")  
-root.geometry("1000x1000")                                         #esthetique
+root.geometry("1000x1000")#esthetique
+root.config(bg="palegreen")
 cnv = Canvas(root, width=LARGEUR, height=HAUTEUR, background=COULEUR_2)
 cnv.pack()
 
