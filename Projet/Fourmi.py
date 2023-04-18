@@ -44,7 +44,7 @@ def dessine_fourmi(i, j, direction):     # dessine la fourmi
         B,
         width=LARGEUR_FLECHE,
         arrow='last',
-        fill='red',
+        fill='brown4',
         arrowshape=(18, 30, 8))
 
 def dessine_carre(i, j):       #dessin les petites cases noires                                              
