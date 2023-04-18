@@ -77,7 +77,7 @@ def dessin(position, direction, fourmi):     # fct qui nous laisse "fusionner" l
 def bouger(position, direction, items):                             
     i, j = position
     a, b = direction
-    aa, bb = (b, -a) if items[i][j] == 0 else (-b, a)
+    aa, bb = (b, -a) if items[i][j] == 0 else (-b, a) #orientation de la fleche
 
     newi, newj = i + aa, j + bb           #nouvelle position et nouvelle direction de la fourmi par rapport a son deplacement
 
